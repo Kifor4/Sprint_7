@@ -1,0 +1,176 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "orders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "courierId": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "firstName": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "lastName": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "address": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "metroStation": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "phone": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "rentTime": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "deliveryDate": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "track": {
+            "type": "integer"
+          },
+          "color": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string",
+              "enum": [
+                "BLACK",
+                "GREY"
+              ]
+            }
+          },
+          "comment": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer",
+            "enum": [
+              0
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "courierId",
+          "firstName",
+          "lastName",
+          "address",
+          "metroStation",
+          "phone",
+          "rentTime",
+          "deliveryDate",
+          "track",
+          "color",
+          "comment",
+          "createdAt",
+          "updatedAt",
+          "status"
+        ]
+      }
+    },
+    "pageInfo": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer"
+        },
+        "total": {
+          "type": "integer"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "page",
+        "total",
+        "limit"
+      ]
+    },
+    "availableStations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "number": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string",
+            "enum": [
+              "#D92B2C",
+              "#F07025",
+              "#89339E",
+              "#FBC81E",
+              "#9F9F9F",
+              "#A8D92D",
+              "#80D4C9",
+              "#B0BFE7",
+              "#efadb5",
+              "#4DBE52",
+              "#2C75C4",
+              "#4DC6F4"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "number",
+          "color"
+        ]
+      }
+    }
+  },
+  "required": [
+    "orders",
+    "pageInfo",
+    "availableStations"
+  ]
+}
