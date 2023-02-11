@@ -16,15 +16,19 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.equalTo;
 
 public class OrdersAPIClient extends BaseClient {
+    private final String ORDERS_URI = "/api/v1/orders";
+    private final String TRACK_URI = "/api/v1/orders/track";
+    private final String ACCEPT_URI = "/api/v1/orders/accept";
 
     @Step("Создание заказа")
     public Response createOrder(String firstName, String lastName, String address, String metroStation, String phone, int rentTime, String deliveryDate, String comment, String... color) {
         OrderModel orderModel = new OrderModel(firstName, lastName, address, metroStation, phone, rentTime, deliveryDate, comment, color);
-        return doPostRequest("/api/v1/orders", orderModel);
+        return doPostRequest(ORDERS_URI, orderModel);
     }
+
     @Step("Создание заказа по модели")
     public Response createOrderByModel(OrderModel orderModel) {
-        return doPostRequest("/api/v1/orders", orderModel);
+        return doPostRequest(ORDERS_URI, orderModel);
     }
 
 
@@ -44,7 +48,7 @@ public class OrdersAPIClient extends BaseClient {
 
     @Step("Получение полного списка заказов")
     public Response getFullOrdersList() {
-        return doGetRequest("/api/v1/orders");
+        return doGetRequest(ORDERS_URI);
     }
 
     @Step("Проверка, что список заказов не пустой")
@@ -66,7 +70,7 @@ public class OrdersAPIClient extends BaseClient {
     public Response getOrder(int trackNumber) {
         Map<String, Integer> params = new HashMap<>();
         params.put("t", trackNumber);
-        return doGetRequest("/api/v1/orders/track", params);
+        return doGetRequest(TRACK_URI, params);
     }
 
     @Step("Проверка успешности получения заказа")
@@ -84,7 +88,7 @@ public class OrdersAPIClient extends BaseClient {
 
     @Step("Получение заказа без трэк-номера")
     public Response getOrderWithoutId() {
-        return doGetRequest("/api/v1/orders/track");
+        return doGetRequest(TRACK_URI);
     }
 
     @Step("Проверка неуспешности получения заказа без трэк-номера")
@@ -107,7 +111,7 @@ public class OrdersAPIClient extends BaseClient {
     public Response acceptOrder(int id, int courierId) {
         Map<String, Integer> params = new HashMap<>();
         params.put("courierId", courierId);
-        return doPutRequest("/api/v1/orders/accept/" + id, params);
+        return doPutRequest(ACCEPT_URI + "/" + id, params);
     }
 
 
@@ -121,14 +125,14 @@ public class OrdersAPIClient extends BaseClient {
 
     @Step("Принятие заказа без ID курьера")
     public Response acceptOrderWithoutCourierId(int id) {
-        return doPutRequest("/api/v1/orders/accept/" + id);
+        return doPutRequest(ACCEPT_URI + "/" + id);
     }
 
     @Step("Принятие заказа без ID заказа")
     public Response acceptOrderWithoutOrderId(int courierId) {
         Map<String, Integer> params = new HashMap<>();
         params.put("courierId", courierId);
-        return doPutRequest("/api/v1/orders/accept/", params);
+        return doPutRequest(ACCEPT_URI, params);
     }
 
 

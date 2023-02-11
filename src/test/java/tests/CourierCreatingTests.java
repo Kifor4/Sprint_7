@@ -34,7 +34,7 @@ public class CourierCreatingTests {
 
     @Test
     @DisplayName("Неудачное создание дубликата курьера")
-    public void DuplicateCourierCreatingTest() {
+    public void duplicateCourierCreatingTest() {
         Response response = courierAPIClient.createCourier(login, password, firstName);
         courierAPIClient.checkPositiveCourierCreating(response);
         response = courierAPIClient.createCourier(login, password, firstName);

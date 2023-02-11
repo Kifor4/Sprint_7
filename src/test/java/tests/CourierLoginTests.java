@@ -13,15 +13,13 @@ public class CourierLoginTests {
     private CourierAPIClient courierAPIClient;
     private String login;
     private String password;
-    private String firstName;
-    private int id;
 
     @Before
     public void setUp() {
         courierAPIClient = new CourierAPIClient();
         login = RandomStringUtils.randomAlphanumeric(5, 10);
         password = RandomStringUtils.randomAlphanumeric(5, 10);
-        firstName = RandomStringUtils.randomAlphabetic(5, 10);
+        String firstName = RandomStringUtils.randomAlphabetic(5, 10);
         courierAPIClient.createCourier(login, password, firstName);
     }
 
@@ -64,10 +62,9 @@ public class CourierLoginTests {
     }
 
 
-
     @After
     public void tearDown() {
-        id = courierAPIClient.getCourierID(login, password);
+        int id = courierAPIClient.getCourierID(login, password);
         courierAPIClient.deleteCourierById(id);
     }
 }

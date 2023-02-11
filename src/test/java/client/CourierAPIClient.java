@@ -8,16 +8,18 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 public class CourierAPIClient extends BaseClient {
+    private final String COURIER_URI = "/api/v1/courier";
+    private final String LOGIN_URI = "/api/v1/courier/login";
 
     @Step("Создание курьера со всеми полями")
     public Response createCourier(String login, String password, String firstName) {
         CourierModel courierModel = new CourierModel(login, password, firstName);
-        return doPostRequest("/api/v1/courier", courierModel);
+        return doPostRequest(COURIER_URI, courierModel);
     }
 
     @Step("Создание курьера по модели")
     public Response createCourierByModel(CourierModel courierModel) {
-        return doPostRequest("/api/v1/courier", courierModel);
+        return doPostRequest(COURIER_URI, courierModel);
     }
 
     @Step("Проверка успешности создания курьера")
@@ -37,21 +39,21 @@ public class CourierAPIClient extends BaseClient {
     }
 
     @Step("Создание курьера без логина")
-    public Response createNoLoginCourier (String password, String firstName) {
+    public Response createNoLoginCourier(String password, String firstName) {
         CourierModel courierModel = new CourierModel(true, password, firstName);
-        return doPostRequest("/api/v1/courier", courierModel);
+        return doPostRequest(COURIER_URI, courierModel);
     }
 
     @Step("Создание курьера без пароля")
-    public Response createNoPasswordCourier (String login, String firstName) {
+    public Response createNoPasswordCourier(String login, String firstName) {
         CourierModel courierModel = new CourierModel(false, login, firstName);
-        return doPostRequest("/api/v1/courier", courierModel);
+        return doPostRequest(COURIER_URI, courierModel);
     }
 
     @Step("Создание курьера без имени")
-    public Response createNoFirstNameCourier (String login, String password) {
+    public Response createNoFirstNameCourier(String login, String password) {
         CourierModel courierModel = new CourierModel(login, password);
-        return doPostRequest("/api/v1/courier", courierModel);
+        return doPostRequest(COURIER_URI, courierModel);
     }
 
     @Step("Проверка неуспешности создания курьера без обязательного параметра")
@@ -65,7 +67,7 @@ public class CourierAPIClient extends BaseClient {
     @Step("Авторизация курьера")
     public Response authorizationCourier(String login, String password) {
         CourierModel courierModel = new CourierModel(login, password);
-        return doPostRequest("/api/v1/courier/login", courierModel);
+        return doPostRequest(LOGIN_URI, courierModel);
     }
 
     @Step("Проверка успешности авторизации курьера")
@@ -79,13 +81,13 @@ public class CourierAPIClient extends BaseClient {
     @Step("Авторизация курьера без логина")
     public Response authorizationNoLoginCourier(String password) {
         CourierModel courierModel = new CourierModel(true, password);
-        return doPostRequest("/api/v1/courier/login", courierModel);
+        return doPostRequest(LOGIN_URI, courierModel);
     }
 
     @Step("Авторизация курьера без пароля")
     public Response authorizationNoPasswordCourier(String login) {
         CourierModel courierModel = new CourierModel(false, login);
-        return doPostRequest("/api/v1/courier/login", courierModel);
+        return doPostRequest(LOGIN_URI, courierModel);
     }
 
     @Step("Проверка неуспешности авторизации без обязательных полей")
@@ -107,20 +109,20 @@ public class CourierAPIClient extends BaseClient {
     @Step("Получение ID курьера по логину и паролю")
     public int getCourierID(String login, String password) {
         CourierModel courierModel = new CourierModel(login, password);
-        return doPostRequest("/api/v1/courier/login", courierModel)
+        return doPostRequest(LOGIN_URI, courierModel)
                 .then().extract().path("id");
     }
 
     @Step("Получение ID курьера по модели")
     public int getCourierIdByModel(CourierModel courierModel) {
-        return doPostRequest("/api/v1/courier/login", courierModel)
+        return doPostRequest(LOGIN_URI, courierModel)
                 .then().extract().path("id");
     }
 
     @Step("Удаление курьера")
     public Response deleteCourierById(int id) {
         CourierModel courierModel = new CourierModel(id);
-        return doDeleteRequest("/api/v1/courier/" + id, courierModel);
+        return doDeleteRequest(COURIER_URI + "/" + id, courierModel);
     }
 
     @Step("Проверка успешности удаления курьера")
@@ -133,11 +135,11 @@ public class CourierAPIClient extends BaseClient {
 
     @Step("Удаление курьера без ID")
     public Response deleteCourierWithoutId() {
-        return doDeleteRequest("/api/v1/courier");
+        return doDeleteRequest(COURIER_URI);
     }
 
     @Step("Проверка неуспешности удаления курьера без ID")
-    public void checkNegativeCourierDeletingWithoutID (Response response) {
+    public void checkNegativeCourierDeletingWithoutID(Response response) {
         response.then().assertThat()
                 .statusCode(400)
                 .and()
@@ -145,7 +147,7 @@ public class CourierAPIClient extends BaseClient {
     }
 
     @Step("Проверка неуспешности удаления курьера с неверным ID")
-    public void checkNegativeCourierDeletingWithWrongID (Response response) {
+    public void checkNegativeCourierDeletingWithWrongID(Response response) {
         response.then().assertThat()
                 .statusCode(404)
                 .and()
