@@ -15,10 +15,8 @@ import org.junit.Test;
 public class OrderAcceptingTests {
     private CourierAPIClient courierAPIClient;
     private OrdersAPIClient ordersAPIClient;
-
     private int courierId;
     private int orderID;
-
 
     @Before
     public void setUp() {
@@ -72,7 +70,6 @@ public class OrderAcceptingTests {
         Response response = ordersAPIClient.acceptOrder(wrongOrderId, courierId);
         ordersAPIClient.checkNegativeOrderAcceptingWithWrongOrderId(response);
     }
-
 
     @After
     public void tearDown() {

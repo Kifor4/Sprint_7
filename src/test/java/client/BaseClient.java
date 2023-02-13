@@ -33,7 +33,6 @@ public abstract class BaseClient {
                 .get(uri);
     }
 
-
     protected final Response doPostRequest(String uri, Model body) {
         return given()
                 .spec(baseSpec())
@@ -117,6 +116,4 @@ public abstract class BaseClient {
                 .queryParams(queryParams)
                 .delete(uri);
     }
-
-
 }

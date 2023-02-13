@@ -29,4 +29,3 @@ public class OrdersListModel implements Model {
         this.availableStationModels = availableStationModels;
     }
 }
-

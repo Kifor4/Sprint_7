@@ -13,7 +13,6 @@ public class OrderGettingTests {
     private OrdersAPIClient ordersAPIClient;
     private int trackNumber;
 
-
     @Before
     public void setUp() {
         ordersAPIClient = new OrdersAPIClient();

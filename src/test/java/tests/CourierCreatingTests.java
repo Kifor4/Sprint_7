@@ -24,7 +24,6 @@ public class CourierCreatingTests {
         firstName = RandomStringUtils.randomAlphabetic(5, 10);
     }
 
-
     @Test
     @DisplayName("Создание курьера")
     public void positiveCourierCreatingTest() {

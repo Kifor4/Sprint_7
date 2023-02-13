@@ -26,7 +26,6 @@ public class OrderCreatingTests {
     private String deliveryDate;
     private String comment;
 
-
     @Before
     public void setUp() {
         ordersAPIClient = new OrdersAPIClient();
@@ -39,7 +38,6 @@ public class OrderCreatingTests {
         deliveryDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         comment = RandomStringUtils.randomAlphanumeric(5, 20);
     }
-
 
     @Test
     @DisplayName("Создание заказа")

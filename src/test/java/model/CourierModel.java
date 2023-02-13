@@ -6,7 +6,6 @@ public class CourierModel implements Model {
     private String login;
     private String password;
     private String firstName;
-
     private int id;
 
     public CourierModel() {

@@ -12,9 +12,6 @@ import org.junit.Test;
 @DisplayName("Удаление курьера")
 public class CourierDeletingTests {
     private CourierAPIClient courierAPIClient;
-    private String login;
-    private String password;
-    private String firstName;
     private int id;
 
     @Before
@@ -24,7 +21,6 @@ public class CourierDeletingTests {
         courierAPIClient.createCourierByModel(courierModel);
         id = courierAPIClient.getCourierIdByModel(courierModel);
     }
-
 
     @Test
     @DisplayName("Удаление курьера")

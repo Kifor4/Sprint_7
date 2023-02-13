@@ -22,7 +22,6 @@ public class OrderModel implements Model {
     private String updatedAt;
     private int status;
 
-
     public OrderModel(String firstName, String lastName, String address, String metroStation, String phone, int rentTime, String deliveryDate, String comment, String... color) {
         this.firstName = firstName;
         this.lastName = lastName;

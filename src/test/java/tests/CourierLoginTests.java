@@ -23,7 +23,6 @@ public class CourierLoginTests {
         courierAPIClient.createCourier(login, password, firstName);
     }
 
-
     @Test
     @DisplayName("Авторизация курьера")
     public void positiveCourierAuthorizationTest() {
@@ -60,7 +59,6 @@ public class CourierLoginTests {
         Response response = courierAPIClient.authorizationCourier(login, wrongPassword);
         courierAPIClient.checkNegativeCourierWithWrongParamAuthorization(response);
     }
-
 
     @After
     public void tearDown() {

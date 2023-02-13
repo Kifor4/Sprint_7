@@ -154,4 +154,3 @@ public class CourierAPIClient extends BaseClient {
                 .body("message", equalTo("Курьера с таким id нет"));
     }
 }
-

@@ -31,7 +31,6 @@ public class OrdersAPIClient extends BaseClient {
         return doPostRequest(ORDERS_URI, orderModel);
     }
 
-
     @Step("Проверка успешности создания заказа")
     public void checkPositiveOrderCreating(Response response) {
         response.then().assertThat()
@@ -114,7 +113,6 @@ public class OrdersAPIClient extends BaseClient {
         return doPutRequest(ACCEPT_URI + "/" + id, params);
     }
 
-
     @Step("Проверка успешности принятия заказа")
     public void checkPositiveOrderAccepting(Response response) {
         response.then().assertThat()
@@ -134,7 +132,6 @@ public class OrdersAPIClient extends BaseClient {
         params.put("courierId", courierId);
         return doPutRequest(ACCEPT_URI, params);
     }
-
 
     @Step("Проверка неуспешности принятия заказа без id")
     public void checkNegativeOrderAcceptingWithoutId(Response response) {
